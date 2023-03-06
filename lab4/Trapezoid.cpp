@@ -1,5 +1,6 @@
 #include "Trapezoid.h"
 
+Trapezoid::~Trapezoid()=default;
 
 Trapezoid::Trapezoid() {
     this->Trapezoid::initFromDialogue();
