@@ -1,5 +1,6 @@
 #include "Segment.h"
 
+Segment::~Segment()=default;
 
 Segment::Segment() {
     this->Segment::initFromDialogue();
