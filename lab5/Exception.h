@@ -1,20 +1,17 @@
 #pragma once
 
+#include <exception>
 #include <iostream>
+#include <utility>
 
 using namespace std;
 
-class Exception {
-public:
-    Exception(string what, int cd);
-
-    ~Exception();
-
-    int Code();
-
-    string What();
-
-private:
+class Exception : public exception {
     string err;
-    int code{};
+public:
+    Exception(string msg) : err(std::move(msg)) {};
+
+    ~Exception() override = default;
+
+    string gerError() const { return (err); }
 };

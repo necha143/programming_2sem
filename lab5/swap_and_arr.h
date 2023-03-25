@@ -34,7 +34,7 @@ public:
     // Оператор доступа к элементам массива по индексу
     T &operator[](size_t index) {
         if (index >= size) {
-            throw Exception("Index out of range. ", 1);
+            throw Exception("ERROR. Index out of range.");
         }
         return data[index];
     }
@@ -43,7 +43,6 @@ public:
     size_t getSize() const {
         return size;
     }
-
 
     // Метод для сортировки массива
     void sort() {

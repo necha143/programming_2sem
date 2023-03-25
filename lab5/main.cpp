@@ -60,14 +60,18 @@ int main() {
                         cout << endl;
 
                         int numb, elem;
-                        try {
-                            cout << "Enter the number of the array element to find out the number" << endl;
-                            cin >> numb;
-                            elem = intArr[numb - 1];
-                        }
-                        catch (Exception &ex) {
-                            cout << "ERROR Message: " << ex.What() << "Code: " << ex.Code() << endl;
-                            break;
+                        bool flag = true;
+                        while (flag) {
+                            try {
+                                cout << "Enter the number of the array element to find out the number" << endl;
+                                cin >> numb;
+                                elem = intArr[numb - 1];
+                                flag = false;
+                            }
+                            catch (Exception &ex) {
+                                cout << "ERROR Message: " << ex.gerError() << endl;
+                                flag = true;
+                            }
                         }
 
                         cout << "The element of the array, that now standing under the " << numb << " number: " << elem
@@ -104,7 +108,7 @@ int main() {
                             element = charArr[numb - 1];
                         }
                         catch (Exception &ex) {
-                            cout << "ERROR Message: " << ex.What() << "Code: " << ex.Code() << endl;
+                            cout << "ERROR Message: " << ex.gerError() << endl;
                             break;
                         }
 
