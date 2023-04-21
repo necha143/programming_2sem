@@ -1,5 +1,6 @@
 #pragma once
-#include "mini_array.h"
+
+#include "4-numbers.type.h"
 
 namespace MyAlgo {
 

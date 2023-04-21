@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 #include "algorothms.h"
-#include "mini_array.h"
+#include "4-numbers.type.h"
 
 using namespace std;
 
@@ -97,7 +97,6 @@ int main() {
                 }
                 if (check){
                     cout << "...ooPs...there aren't such number" << endl;
-                    check = false;
                 }
 
                 vector<char> arr_2 = {'a', 'b', 'c', 'd'};
@@ -106,10 +105,10 @@ int main() {
                 for (int i = 0; i < arr_1.size(); i++){
                     if (find_1 == arr_2.end() - i){
                         cout << i << "th place from the end" << endl;
-                        check = false;
+                        //check = false;
                         break;
                     } else {
-                        check = true;
+                        //check = true;
                     }
                 }
                 cout << endl;
