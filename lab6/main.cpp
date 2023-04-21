@@ -12,12 +12,12 @@ enum Commands {
     EXIT
 };
 
-template<class T>
+template<typename T>
 bool positive_val(T value) {
     return value > 0;
 }
 
-template<class T>
+template<typename T>
 bool even_val(T value) {
     return value % 2;
 }
