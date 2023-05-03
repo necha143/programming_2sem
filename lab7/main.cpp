@@ -15,8 +15,6 @@ int main() {
     int command;
     cout << "Let the size of our buffer be equal to 5" << endl;
 
-    Circular_Buffer<int> circularBuffer(5);
-
     while (true) {
         cout << "What can we do:" << endl;
         cout << "1. Inserting and deleting at the end" << endl;
@@ -52,7 +50,7 @@ int main() {
             }
 
             case INSERT_DEL_FRONT: {
-                Circular_Buffer<int> buf(5); // создание кольцевого буфера
+                Circular_Buffer<int> buf(5);
 
                 buf.push_front(1);
                 buf.push_front(2);

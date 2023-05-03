@@ -1,7 +1,7 @@
 #pragma once
 
 #include <iostream>
-#include <iterator>
+//#include <iterator>
 
 using namespace std;
 
@@ -216,6 +216,10 @@ public:
         T *temp = new T[capa_city];
         for (int i = 0; i < this->capacity; i++) {
             temp[i] = buffer[i];
+        }
+        int difference = capa_city - this->capacity;
+        for (int i = difference + this->capacity; i < capa_city; i++) {
+            temp[i] = 0;
         }
 
         this->buffer = temp;
