@@ -66,14 +66,54 @@ int main() {
             }
 
             case INSERT_DEL_ITERATOR: {
+                Circular_Buffer<int> buf(5);
+                buf.push_back(1);
+                buf.push_back(1);
+                buf.push_back(1);
+                buf.push_back(1);
+                buf.push_back(1);
+
+                Circular_Buffer<int>::Iterator iterator = Circular_Buffer<int>::Iterator(buf.begin());
+                iterator += 2;
+                buf.display();
+                buf.add(iterator, 99);
+                buf.display();
+                iterator -= 1;
+                buf.del(iterator);
+                buf.display();
                 break;
             }
 
             case ACCESS_FRONT_REAR: {
+                Circular_Buffer<int> buf(5);
+
+                buf.push_back(1);
+                buf.push_back(2);
+                buf.push_back(3);
+                buf.push_back(4);
+                buf.push_back(5);
+                buf.display();
+
+                cout << buf.first() << endl;
+                cout << buf.last() << endl;
                 break;
             }
 
             case ACCESS_INDEX: {
+                Circular_Buffer<int> buf(5);
+
+                buf.push_back(1);
+                buf.push_back(2);
+                buf.push_back(3);
+                buf.push_back(4);
+                buf.push_back(5);
+                buf.display();
+
+                cout << "The element standing on the 4th place: " << buf[3] << endl;
+                cout << "Let's change this element to a new one:" << endl;
+                buf[3] = 99;
+                buf.display();
+                cout << endl;
                 break;
             }
 
@@ -89,6 +129,7 @@ int main() {
                 cout << "New capacity: 7" << endl;
                 buf.change_capacity(7);
                 buf.display();
+
                 cout << endl;
                 break;
             }
@@ -101,5 +142,4 @@ int main() {
                 break;
         }
     }
-
 }
