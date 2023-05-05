@@ -16,8 +16,8 @@ class Circular_Buffer {
     };
 
 public:
-    explicit Circular_Buffer(int capa_city) {
-        this->buffer = new T[capa_city];
+    explicit Circular_Buffer(int capa_city) { //ключевое слово explicit перед конструктором служит для того,
+        this->buffer = new T[capa_city]; // чтобы конструктор не вызывался автоматически при неявном преобразовании
         this->capacity = capa_city;
         this->size = 0;
         this->start = this->final = 0;
@@ -26,7 +26,7 @@ public:
         }
     }
 
-    ~Circular_Buffer() { delete[] buffer; }
+    ~Circular_Buffer() { delete[] buffer; } //деструктор
 
     int getCapacity() {
         return this->capacity;
@@ -38,11 +38,14 @@ public:
 
     //////////класс итератор с переопредленными методами///////////
     class Iterator : public iterator<random_access_iterator_tag, T> {
-    private:
+        /*Класс итератор наследуется от типа итератора, который поддерживает произвольный доступ к элементам контейнера, в котором итератор используется.
+        Он обеспечивает быстрый доступ к элементам за константное время, позволяет перемещаться на заданное
+        количество шагов вперед и назад и поддерживает арифметику указателей.*/
         T *iterator_;
     public:
         using difference_type = typename iterator<random_access_iterator_tag, T>::difference_type;
 
+        // difference_type является типом, который используется для представления разницы между двумя итераторами в контейнере.
         difference_type operator-(const Iterator &obj) const {
             return iterator_ - obj.iterator_;
         }
@@ -107,11 +110,6 @@ public:
 
         bool operator<=(const Iterator *other) {
             return this->iterator_ <= other->iterator_;
-        }
-
-        Iterator &operator=(T &other) const {
-            iterator_ = *other;
-            return *this;
         }
     };
 
@@ -200,8 +198,6 @@ public:
     //////////Вставка и удаление в произвольное место по итератору//////////
     void add(Iterator iterator, int value) {
         int index = (iterator - begin()) % capacity;
-
-        T last_elem = buffer[final];
         buffer[index] = value;
 
         size++;
