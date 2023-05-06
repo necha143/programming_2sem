@@ -44,7 +44,6 @@ public:
         T *iterator_;
     public:
         using difference_type = typename iterator<random_access_iterator_tag, T>::difference_type;
-
         // difference_type является типом, который используется для представления разницы между двумя итераторами в контейнере.
         difference_type operator-(const Iterator &obj) const {
             return iterator_ - obj.iterator_;
@@ -112,14 +111,6 @@ public:
             return this->iterator_ <= other->iterator_;
         }
     };
-
-    Iterator begin() {
-        return Iterator(buffer);
-    }
-
-    Iterator end() {
-        return Iterator(buffer + capacity);
-    }
 
     //////////вставка и удаление в конец///////////
     void push_back(const T &element) {
@@ -239,6 +230,14 @@ public:
     T &last() {
         int real_index = (final) % capacity;
         return buffer[real_index];
+    }
+
+    Iterator begin() {
+        return Iterator(buffer);
+    }
+
+    Iterator end() {
+        return Iterator(buffer + capacity);
     }
 
     //////////доступ по индексу (переопределение метода [])///////////
