@@ -17,13 +17,10 @@ class Circular_Buffer {
 
 public:
     explicit Circular_Buffer(int capa_city) { //ключевое слово explicit перед конструктором служит для того,
-        this->buffer = new T[capa_city]; // чтобы конструктор не вызывался автоматически при неявном преобразовании
+        this->buffer = new T[capa_city]{}; // чтобы конструктор не вызывался автоматически при неявном преобразовании
         this->capacity = capa_city;
         this->size = 0;
         this->start = this->final = 0;
-        for (int i = 0; i < capa_city; i++) {
-            buffer[i] = 0;
-        }
     }
 
     ~Circular_Buffer() { delete[] buffer; } //деструктор
@@ -44,6 +41,7 @@ public:
         T *iterator_;
     public:
         using difference_type = typename iterator<random_access_iterator_tag, T>::difference_type;
+
         // difference_type является типом, который используется для представления разницы между двумя итераторами в контейнере.
         difference_type operator-(const Iterator &obj) const {
             return iterator_ - obj.iterator_;
@@ -110,6 +108,10 @@ public:
         bool operator<=(const Iterator *other) {
             return this->iterator_ <= other->iterator_;
         }
+
+        T &operator*() const { //оператор разыменования, благодаря ему, мы можем вернуть объект на который указывает итератор
+            return *iterator_;
+        };
     };
 
     //////////вставка и удаление в конец///////////
@@ -242,24 +244,17 @@ public:
 
     //////////доступ по индексу (переопределение метода [])///////////
     T &operator[](int index) {
-        if (index >= capacity) {
-            throw std::out_of_range("Index out of range");
-        }
         int real_index = (start + index) % capacity;
         return buffer[real_index];
     }
 
     //////////изменение капасити///////////
     void change_capacity(int capa_city) {
-        T *temp = new T[capa_city];
+        T *temp = new T[capa_city] {};
         for (int i = 0; i < this->capacity; i++) {
             temp[i] = buffer[i];
         }
-        int difference = capa_city - this->capacity;
-        for (int i = difference + this->capacity; i < capa_city; i++) {
-            temp[i] = 0;
-        }
-
+        delete[] this->buffer;
         this->buffer = temp;
         this->capacity = capa_city;
     }
